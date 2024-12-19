@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+    //Optimal - 3 pointer approach - low,mod, high
+    int low = 0, mid=0,high=nums.size()-1;
+    while(mid<=high){
+        if(nums[mid]==0){
+            swap(nums[mid],nums[low]);
+            mid++;
+            low++;
+        }
+        else if(nums[mid]==2){
+            swap(nums[mid],nums[high]);
+            high--;
+        }
+        else{
+            mid++;
+        }
+    }  
+        
+    }
+};    //TC: o(n) , SC: o(1)
+
+
+
+/*
+            Brute Force 
+        Sort(nums.beigm(),nums.end()) 
+            Better
+        Count --> Index to be iterated and loop from 0 to 2(3 Array to be used)
+          */
