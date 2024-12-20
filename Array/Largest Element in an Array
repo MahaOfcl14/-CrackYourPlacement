@@ -1,0 +1,25 @@
+//Brute : using sorting technique
+//Optimal : 
+Considering arr[0] as largest 
+compare arr[0] with rest of the arr[i]
+update the largest with arr[i]
+return largest
+
+                Code
+
+class Solution {
+  public:
+    int largest(vector<int> &arr) {
+        // code here
+        int larger = arr[0];
+        int n = arr.size();
+        for(int i=0; i<n;i++){
+            if(arr[i]>larger){
+                larger = arr[i];
+            }
+        }
+        return larger;
+    }
+};
+
+
