@@ -1,0 +1,48 @@
+/*
+            ALGORITHM
+        1.Map creation
+        2. PrefixSum - consider like pointer
+        3.Count - To count the frequencies
+        4.Pointer to traverse the array
+        5.To Find the Remainder of the prefixsum
+        6.Let's count the remainder in Map
+        7.Increment the remainder stored in the map
+*/
+          CODE 
+
+#include <unordered_map>
+#include <vector>
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        //1.Map creation
+        std::unordered_map<int, int>map;
+        map[0] = 1; //consider like this --> <0,1>
+        
+        //2. PrefixSum - consider like pointer
+        int prefixSum = 0;
+        //3.Count - To count the frequencies
+        int count = 0;
+
+for(int i=0; i<nums.size();i++){
+    //Pointer to traverse the array
+    prefixSum += nums[i];
+    //To Find the Remainder of the prefixsum
+    int remainder = prefixSum % k; 
+    if(remainder < 0){
+        remainder += k;
+    }
+    if(map.find(remainder)!=map.end()){
+       //Let's count the remainder in Map
+        count += map[remainder];
+        map[remainder]++;
+    }
+    else{
+        map[remainder] = 1;
+    }
+   
+}
+ return count;
+        
+    }
+};
