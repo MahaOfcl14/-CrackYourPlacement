@@ -1,0 +1,24 @@
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        // Max profit
+        int max = 0;
+        // Buying price
+        int currentprice = prices[0];
+        int n = prices.size();
+        for (int i = 0; i < n; i++) {
+            // Buyingprice < Selling price = profit
+            if (currentprice < prices[i]) {
+                // finding difference to get max profit
+                max += prices[i] - currentprice;
+            }
+            // Update
+            currentprice = prices[i];
+        }
+        return max;
+    }
+};
+
+TC : O(N)
+SC : O(1)
