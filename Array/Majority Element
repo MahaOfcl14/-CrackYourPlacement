@@ -1,0 +1,28 @@
+/*
+majority element = nums[0], cnt = 1;
+traverse  from nums[1];
+compare the majority element with array
+increase the value of count or decrease the value of count
+compare the count which  is eq to 0 means update the majority to nums[i] --> counut = 1
+*/
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int majelem=nums[0], count = 1;
+        
+        //No need to traverse from 0
+        for(int i=1; i<nums.size(); i++){
+            if(majelem == nums[i]) count++;
+            else count--;
+            if(count == 0){
+                majelem = nums[i];
+                count = 1;
+            }
+
+        }
+        return majelem;
+        
+    }
+};
