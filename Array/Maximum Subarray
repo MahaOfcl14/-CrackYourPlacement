@@ -1,0 +1,35 @@
+long long maxSubarraySum(vector<int> arr, int n)
+{
+/*
+Brute Force - To Reiterate each subarray so we need 3 loops
+Better - No need Reiterate the previous subarray just use the previous sum with current value
+Optimal - Kadane's Algorithm  
+It keeps moving by adding the sum but it drops to zero whenever it has -ve number
+
+*/
+
+
+   long long maxi = LONG_MIN; // maximum sum
+    long long sum = 0;
+
+    for (int i = 0; i < n; i++) {
+
+        sum += arr[i];
+
+        if (sum > maxi) {
+            maxi = sum;
+        }
+
+        // If sum < 0: discard the sum calculated
+        if (sum < 0) {
+            sum = 0;
+        }
+    }
+
+  
+
+    if (maxi < 0) maxi = 0;
+
+    return maxi;
+
+}
