@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        /*
+        Create map to find the occurance of prefsum
+        Traverse the array, update the value of array in prefsum
+        Find the remove element, then update count, update prefsum in map
+        */
+        int prefsum = 0, count = 0;
+        int n = nums.size();
+        map<int, int> mpp;
+        mpp[0] = 1;
+        for(int i=0; i<n; i++){
+            prefsum += nums[i];
+            int remove = prefsum - k;
+          count += mpp[remove];
+          mpp[prefsum] += 1;
+        }
+        return count;
+        
+    }
+};
