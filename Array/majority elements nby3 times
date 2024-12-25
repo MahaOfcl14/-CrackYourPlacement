@@ -1,0 +1,46 @@
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        /*
+        traverse the array to get the count 
+        check for cnt is zero and element 2 doesn't have it make sure to declare the values similar for cnt 2
+        check for the element in the array is present in the el1 and el2 if so increase the counts 
+        otherwise decrease the count 
+        List to store the elements
+        traverse the array, check for the elements with array elements 
+        check with n/3+1 then push it into the elments on the list
+        then sort and retun
+        */
+        int count1 = 0, count2 = 0;
+        int el1 = INT_MIN, el2 = INT_MIN;
+        for(int i=0; i<nums.size();i++){
+            if(count1 == 0 && el2 != nums[i]){
+                count1 = 1;
+                el1 = nums[i];
+            }
+            else if(count2 == 0 && el1 != nums[i]){
+                count2 = 1;
+                el2 = nums[i];
+            }
+            else if (nums[i] == el1) count1++;
+            else if (nums[i] == el2) count2++;
+            else {
+                count1--;
+                count2--;
+            }
+        }
+        vector<int>ls;
+        count1=0;
+        count2=0;
+        for(int i=0; i<nums.size(); i++){
+            if(el1 == nums[i]) count1++;
+            if(el2 == nums[i]) count2++; 
+        }
+        int mini = (int)(nums.size()/3)+1;
+
+        if(count1 >= mini) ls.push_back(el1);
+        if(count2 >= mini) ls.push_back(el2);
+        sort(ls.begin(), ls.end());
+        return ls;
+    }
+};
