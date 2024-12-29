@@ -1,0 +1,26 @@
+#include<vector>
+
+vector<vector<int>> mergeOverlappingIntervals(vector<vector<int>> &arr){
+	// Write your code here.
+	/*
+	Every element has to be compared, if the second number in the element is smaller than next one mean expand the value
+	It's not overlapping mean push the value into ans 
+	*/
+	vector<vector<int>>ans;
+	sort(arr.begin(), arr.end());
+	int n = arr.size();
+	for(int i=0; i<n; i++){
+		//NO overlapping
+		//checking whether the array element is empty or already present in the ans
+		if(ans.empty() || arr[i][0]>ans.back()[1]) {
+			ans.push_back(arr[i]);
+		}
+		else{
+			//Overlap
+			ans.back()[1]  = max(ans.back()[1], arr[i][1]);
+
+		}
+	}
+	return ans;
+	
+}
