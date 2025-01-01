@@ -1,0 +1,31 @@
+#include<vector>
+#include<bits/stdc++.h>
+
+void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &a, vector<long long> &b){
+	/*
+	Two pointers to be placed left at last and right at first
+	left mmust be greater than 0 and right less than b
+	if both elements are at wrong place mean swap
+	otherwise break then sort
+	*/
+	
+	// Write your code here.
+	int n = a.size();
+	int m = b.size();
+	int right = 0;
+	int left = n-1;
+	while(left>=0&&right<m){
+		if(a[left]>b[right]){
+			swap(a[left],b[right]);
+			left --; 
+			right++;
+		}
+		else{
+			break;
+		}
+	}
+	sort(a.begin(),a.end());
+	sort(b.begin(),b.end());
+
+	
+}
