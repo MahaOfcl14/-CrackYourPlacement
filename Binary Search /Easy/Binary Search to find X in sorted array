@@ -1,0 +1,24 @@
+int search(vector<int> &nums, int target) {
+  // Write your code here.
+  /*
+  low, mid, high, To compare mid with target
+  Target is greater than mid mean move the low ahead of mid
+  Otherwise move the high before the mid
+  Target equals to mid return it
+  When high crosses the low mean element not present so return -1
+
+  */
+  int n = nums.size();
+  int high = n - 1, low = 0;
+
+  while (low <= high) {
+    int mid = (low + high) / 2;
+    if (nums[mid] == target)
+      return mid;
+    else if (target > nums[mid])
+      low = mid + 1;
+    else
+      high = mid - 1;
+  }
+  return -1;
+}
