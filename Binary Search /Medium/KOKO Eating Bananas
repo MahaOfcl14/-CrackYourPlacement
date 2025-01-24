@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// To find the maximum value in the array
+int findmax(vector<int> &v) {
+    int maxi = INT_MIN;
+    int n = v.size();
+    for (int i = 0; i < n; i++) {
+        maxi = max(maxi, v[i]);
+    }
+    return maxi;
+}
+
+// To calculate the total hours needed
+int TotalHour(vector<int> &v, int hourly) {
+    int totalH = 0;
+    int n = v.size();
+    for (int i = 0; i < n; i++) {
+        totalH += (v[i] + hourly - 1) / hourly; // Avoid using ceil
+    }
+    return totalH;
+}
+
+// Binary search on the answer
+int minimumRateToEatBananas(vector<int> v, int h) {
+    int low = 1, high = findmax(v);
+    while (low < high) { 
+        int mid = low + (high - low) / 2; 
+        int totalH = TotalHour(v, mid);
+        if (totalH <= h) {
+            high = mid; // Try smaller rates 
+        } else {
+            low = mid + 1; // Increase the rate
+        }
+    }
+    return low;
+}
+
