@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+//To check whether it is possible or not
+int possible(vector<int> &arr, int day, int k, int m){
+	int n = arr.size();
+	int count = 0;
+	int noOfBoq = 0;
+	for(int i=0; i<n; i++){
+		if(arr[i] <= day){
+			count ++;
+		}
+		else {
+			noOfBoq += count/k;
+			count = 0;
+			
+		}
+	}
+				noOfBoq += count/k;
+				return noOfBoq >= m;
+
+
+}
+
+int roseGarden(vector<int> arr, int k, int m)
+{
+	// Write your code here
+	long long val = k*1LL*m*1LL;
+	if(val > arr.size()) return -1;
+	int mini = INT_MAX;
+	int maxi = INT_MIN;
+	for(int i=0; i<arr.size(); i++){
+		mini = min(arr[i], mini);
+		maxi = max(arr[i], maxi);
+	}
+	int low = mini, high = maxi;
+	while(low <= high){
+		int mid = (low+high)/2;
+		if(possible(arr,mid,k,m)){
+			high = mid-1;
+
+		}
+		else{
+			low = mid+1;
+		}
+	}
+	return low;
+}
