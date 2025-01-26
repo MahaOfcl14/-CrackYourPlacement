@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+int canWePlaceCows (vector<int> &stalls, int dist, int cow){
+    int last = stalls[0], cntcows = 1;
+    for(int i=1; i<stalls.size(); i++){
+        if(stalls[i]-last >= dist){
+            cntcows++;
+            last = stalls[i];
+        }
+        if(cntcows >= cow) return true;
+    }
+    return false;
+}
+int aggressiveCows(vector<int> &stalls, int k)
+{
+    sort(stalls.begin(), stalls.end());
+    int n = stalls.size();
+    int low = 1, high = stalls[n-1]-stalls[0];
+    while(low<=high){
+        int mid = (low + high)/2;
+        if(canWePlaceCows(stalls, mid, k)==true){
+            low = mid+1;
+        }
+        else{
+            high = mid-1;
+        }
+    }
+    return high;
+}
