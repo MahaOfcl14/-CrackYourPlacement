@@ -1,0 +1,22 @@
+class Solution {
+private :
+ int CountNum (int n){
+    int count = log10 (n) + 1;
+    return count;
+ }
+
+public:
+    bool isArmstrong(int n) {
+        int copy = n;
+        int sum = 0;
+        int count = CountNum(n);
+        while(n > 0){
+            int ld = n%10;
+            sum += pow(ld, count);
+            n=n/10;
+        }
+        if(copy == sum) return true;
+        else return false;
+
+    }
+};
