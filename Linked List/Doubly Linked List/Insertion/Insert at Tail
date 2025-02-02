@@ -1,33 +1,49 @@
 /*
-Definition of singly linked list:
+Definition of doubly linked list:
 struct ListNode
 {
     int val;
     ListNode *next;
+    ListNode *prev;
+    ListNode()
+    {
+        val = 0;
+        next = NULL;
+        prev = NULL;
+    }
     ListNode(int data1)
     {
         val = data1;
         next = NULL;
+        prev = NULL;
     }
-    ListNode(int data1, ListNode *next1)
+    ListNode(int data1, ListNode *next1, ListNode *prev1)
     {
         val = data1;
         next = next1;
+        prev = prev1;
     }
 };
 */
 
 class Solution {
 public:
-    ListNode* insertAtTail(ListNode* &head, int X) {
-        if(head == NULL) return new ListNode(X);
-        ListNode* temp = head;
-        while(temp->next != NULL){
-            temp = temp->next;
+    ListNode* insertBeforeTail(ListNode* head, int X) {
+        if(head->next==NULL){
+            ListNode* newHead = new ListNode(X,head,nullptr);
+            head->prev=newHead;
+            return newHead;
         }
-        ListNode* newNode = new ListNode(X);
-        temp->next = newNode;
+        ListNode* tail = head;
+        while(tail->next != nullptr){
+            tail = tail->next;
+        }
+        ListNode* prev = tail->prev;
+        ListNode* newNode = new ListNode(X, tail, prev);
+        prev->next = newNode;
+        tail->prev=newNode;
         return head;
+
 
     }
 };
