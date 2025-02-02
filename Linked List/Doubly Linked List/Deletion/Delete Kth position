@@ -1,0 +1,67 @@
+/*
+Definition of doubly linked list:
+struct ListNode
+{
+    int val;
+    ListNode *next;
+    ListNode *prev;
+    ListNode()
+    {
+        val = 0;
+        next = NULL;
+        prev = NULL;
+    }
+    ListNode(int data1)
+    {
+        val = data1;
+        next = NULL;
+        prev = NULL;
+    }
+    ListNode(int data1, ListNode *next1, ListNode *prev1)
+    {
+        val = data1;
+        next = next1;
+        prev = prev1;
+    }
+};
+*/
+
+class Solution {
+public:
+    ListNode* deleteKthElement(ListNode* head, int k) {
+        if(head==nullptr) return NULL;
+        ListNode* kNode = head;
+        int cnt = 0;
+        while(kNode!=nullptr){
+            cnt++;
+            if(k==cnt) break;
+            kNode = kNode->next;
+        }
+        if(kNode==nullptr) return head;
+          ListNode* prev = kNode->prev;
+        ListNode* front = kNode->next;
+        if(prev==nullptr && front == nullptr){
+            delete kNode;
+            return nullptr;
+        }
+      
+        //head
+        else if(prev==nullptr){
+            head = front;
+            front->prev = nullptr;
+        }
+        //tail
+        else if(front==nullptr){
+            prev->next = nullptr;
+        }
+        //Middle element to be deleted
+        else{
+            prev->next = front;
+            front->prev = prev;
+        }
+        delete kNode;
+        return head;
+
+
+    }
+};
