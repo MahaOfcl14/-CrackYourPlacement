@@ -12,3 +12,5 @@ class Solution{
 			return;
 		}
 };
+
+TC: o(n/2)
