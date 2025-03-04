@@ -42,8 +42,8 @@ public:
             int right = nse[i] - i;
             int left = i - psee[i];
 
-            long long freq = (left*right*1LL);
-            int val = (freq*arr[i]*1LL);
+            long long freq = left*right*1LL;
+            int val = (freq*arr[i]*1LL)%mod;
             sum = (sum+val) % mod; 
         } 
         return sum;
